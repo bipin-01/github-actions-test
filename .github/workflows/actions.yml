@@ -1,6 +1,9 @@
 name: Actions Workflow
 
-on: [push]
+on: 
+  push:
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
 jobs:
   run-github-actions:
@@ -10,8 +13,8 @@ jobs:
         run: |
           pwd
           ls -a
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
+          echo $GITHUB_SHA                                     # commit id
+          echo $GITHUB_REPOSITORY                              # name of our repository 
           echo $GITHUB_WORKSPACE
           echo "{{ github.token }}"
       - name: simple JS Action
